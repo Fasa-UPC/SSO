@@ -2,6 +2,9 @@ import express, { NextFunction, Request, Response } from "express";
 import authRouter from "./routes/auth.route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import User from "./db/models/User.js";
+import Client from "./db/models/Client.js";
+import sequelize from "./db/db.js";
 
 const app = express();
 

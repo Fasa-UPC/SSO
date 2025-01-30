@@ -10,7 +10,7 @@ const Client = sequelize.define(
       primaryKey: true,
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     secret: {
@@ -19,7 +19,7 @@ const Client = sequelize.define(
     },
     validTo: {
       type: DataTypes.DATE,
-      field: "valid-to",
+      field: "valid_to",
       allowNull: true,
     },
     approved: {
@@ -28,7 +28,7 @@ const Client = sequelize.define(
     },
     clientURI: {
       type: DataTypes.STRING,
-      field: "client-uri",
+      field: "client_uri",
       allowNull: false,
     },
   },

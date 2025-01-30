@@ -4,16 +4,16 @@ import Client from "../db/models/Client.js";
 const signinSchema = Joi.object({
   identifier: Joi.alternatives(
     Joi.string().email(),
-    Joi.string().min(3).max(25),
+    Joi.string().min(3).max(50),
     Joi.string().length(7)
   ).required(),
   password: Joi.string(),
 });
 
 const signupSchema = Joi.object({
-  firstname: Joi.string().max(25).required(),
-  lastname: Joi.string().max(25).required(),
-  username: Joi.string().min(3).max(25).required(),
+  firstname: Joi.string().max(50).required(),
+  lastname: Joi.string().max(50).required(),
+  username: Joi.string().min(3).max(50).required(),
   email: Joi.string().email().optional(),
   phone: Joi.string().optional(),
   password: Joi.string().required(),
