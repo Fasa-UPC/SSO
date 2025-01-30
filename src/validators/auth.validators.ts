@@ -1,11 +1,30 @@
 import Joi from "joi";
+import Client from "../db/models/Client.js";
 
 const signinSchema = Joi.object({
-  // TODO: Schema
+  identifier: Joi.alternatives(
+    Joi.string().email(),
+    Joi.string().min(3).max(25),
+    Joi.string().length(7)
+  ).required(),
+  password: Joi.string(),
 });
 
 const signupSchema = Joi.object({
-  // TODO: Schema
+  firstname: Joi.string().max(25).required(),
+  lastname: Joi.string().max(25).required(),
+  username: Joi.string().min(3).max(25).required(),
+  email: Joi.string().email().optional(),
+  phone: Joi.string().optional(),
+  password: Joi.string().required(),
+  confirmPassword: Joi.ref("password"),
+  studentNo: Joi.string().length(7).required(),
+  birthDate: Joi.date().required(),
 });
 
-export { signinSchema, signupSchema };
+const authQuerySchema = Joi.object({
+  clientId: Joi.string().uuid().required(),
+  clientUri: Joi.string().required(),
+});
+
+export { signinSchema, signupSchema, authQuerySchema };
