@@ -1,5 +1,4 @@
 import Joi from "joi";
-import Client from "../db/models/Client.js";
 
 const signinSchema = Joi.object({
   identifier: Joi.alternatives(

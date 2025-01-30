@@ -1,5 +1,4 @@
 import { RequestHandler } from "express";
-import User from "../db/models/User.js";
 import sharp from "sharp";
 import { saveFile } from "../utils/file-manager.js";
 import path from "path";
