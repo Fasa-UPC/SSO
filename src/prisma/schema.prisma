@@ -13,8 +13,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Student {
+  id          String       @id @default(uuid())
+  firstName   String?      @map("first_name") @db.VarChar(50)
+  lastName    String?      @map("last_name") @db.VarChar(50)
+  studentNo   String       @unique @map("student_no") @db.Char(7)
+  username    String       @unique @db.VarChar(50)
+  password    String       @db.Char(60)
+  email       String?      @unique @db.VarChar(254)
+  phone       String?      @db.VarChar(11)
+  approved    Boolean      @default(false)
+  birthDate   DateTime?    @db.Date
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  studentCard StudentCard?
+
+  @@index([username])
+  @@index([studentNo])
+  @@index([firstName, lastName])
+  @@map("students")
+}
+
+model StudentCard {
+  id        String   @id @default(uuid())
+  img       String   @db.Text
+  studentId String   @unique @map("userId")
+  student   Student  @relation(fields: [studentId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("student_cards")
+}
+
 model Client {
-  id String @id @default(uuid())
-  title String 
+  id        String   @id @default(uuid())
+  title     String   @db.VarChar(50)
+  secret    String?  @db.Text
+  validTo   DateTime @map("valid_to")
+  approved  Boolean  @default(false)
+  clientURI String   @map("client_uri") @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
   @@map("clients")
 }

@@ -24,7 +24,11 @@ const saveFile = ({ file, savePath }: SaveFileInput) => {
 
   mkDir(dirname);
 
-  fs.writeFileSync(path.join(dirname, filename), file);
+  savePath = path.join(dirname, filename);
+  fs.writeFileSync(savePath, file);
+
+  // Return relative path of the uploaded file to the upload dir
+  return path.relative(getUploadsDir(), savePath);
 };
 
 export { saveFile };

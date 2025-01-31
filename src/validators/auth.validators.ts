@@ -18,7 +18,7 @@ const signupSchema = Joi.object({
   password: Joi.string().required(),
   confirmPassword: Joi.ref("password"),
   studentNo: Joi.string().length(7).required(),
-  birthDate: Joi.date().required(),
+  birthDate: Joi.date().optional(),
 });
 
 const authQuerySchema = Joi.object({
