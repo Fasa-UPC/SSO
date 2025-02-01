@@ -13,6 +13,7 @@ const router = express.Router();
 router.post(
   "/signin",
   dataValidationMiddleware(signinSchema),
+  dataValidationMiddleware(authQuerySchema, "query"),
   authControllers.signinController
 );
 
@@ -20,7 +21,7 @@ router.post(
   "/signup",
   multer({ storage: memoryStorage() }).single("studentCard"),
   dataValidationMiddleware(signupSchema),
-  // dataValidationMiddleware(authQuerySchema, "query"),
+  dataValidationMiddleware(authQuerySchema, "query"),
   authControllers.signupController
 );
 

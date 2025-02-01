@@ -10,8 +10,8 @@ const signinSchema = Joi.object({
 });
 
 const signupSchema = Joi.object({
-  firstname: Joi.string().max(25).required(),
-  lastname: Joi.string().max(25).required(),
+  firstName: Joi.string().max(25).required(),
+  lastName: Joi.string().max(25).required(),
   username: Joi.string().min(3).max(25).required(),
   email: Joi.string().email().optional(),
   phone: Joi.string().optional(),

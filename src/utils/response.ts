@@ -7,6 +7,7 @@ class ResponseCode {
   static RECORD_NOT_FOUND = 5;
   static DENEID = 6;
   static MISS_DATA = 7;
+  static EXPIRED = 8;
 }
 
 class ResponseBody {

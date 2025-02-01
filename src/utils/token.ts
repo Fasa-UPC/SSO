@@ -8,6 +8,12 @@ enum TokenType {
   TOKEN_ID,
 }
 
+type TokenIDPayloadType = {
+  id: string;
+  clientId: string;
+  clientUri: string;
+};
+
 const signToken = (payload: any, type: TokenType, options?: SignOptions) => {
   const token = jwt.sign(
     payload,
@@ -23,7 +29,7 @@ const signToken = (payload: any, type: TokenType, options?: SignOptions) => {
 const validateToken = (
   token: string,
   type: TokenType,
-  options?: VerifyOptions,
+  options?: VerifyOptions
 ) => {
   const payload = jwt.verify(
     token,
@@ -36,4 +42,4 @@ const validateToken = (
   return payload;
 };
 
-export { signToken, validateToken, TokenType };
+export { signToken, validateToken, TokenType, TokenIDPayloadType };
