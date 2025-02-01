@@ -1,5 +1,4 @@
 import Joi from "joi";
-import Client from "../db/models/Client.js";
 
 const signinSchema = Joi.object({
   identifier: Joi.alternatives(
@@ -11,15 +10,15 @@ const signinSchema = Joi.object({
 });
 
 const signupSchema = Joi.object({
-  firstname: Joi.string().max(50).required(),
-  lastname: Joi.string().max(50).required(),
-  username: Joi.string().min(3).max(50).required(),
+  firstName: Joi.string().max(25).required(),
+  lastName: Joi.string().max(25).required(),
+  username: Joi.string().min(3).max(25).required(),
   email: Joi.string().email().optional(),
   phone: Joi.string().optional(),
   password: Joi.string().required(),
   confirmPassword: Joi.ref("password"),
   studentNo: Joi.string().length(7).required(),
-  birthDate: Joi.date().required(),
+  birthDate: Joi.date().optional(),
 });
 
 const authQuerySchema = Joi.object({
