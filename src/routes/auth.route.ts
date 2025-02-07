@@ -1,5 +1,5 @@
 import express from "express";
-import authControllers from "../controllers/auth.controllers.js";
+import AuthController from "../controllers/auth.controllers.js";
 import dataValidationMiddleware from "../middlewares/data-validation.middleware.js";
 import {
   authQuerySchema,
@@ -14,7 +14,7 @@ router.post(
   "/signin",
   dataValidationMiddleware(signinSchema),
   dataValidationMiddleware(authQuerySchema, "query"),
-  authControllers.signinController
+  AuthController.signinController
 );
 
 router.post(
@@ -22,9 +22,9 @@ router.post(
   multer({ storage: memoryStorage() }).single("studentCard"),
   dataValidationMiddleware(signupSchema),
   dataValidationMiddleware(authQuerySchema, "query"),
-  authControllers.signupController
+  AuthController.signupController
 );
 
-router.post("/access-token", authControllers.accessTokenController);
+router.post("/access-token", AuthController.accessTokenController);
 
 export default router;

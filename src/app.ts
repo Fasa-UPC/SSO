@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import authRouter from "./routes/auth.route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { ResponseBody, ResponseCode } from "./utils/response.js";
 
 const app = express();
 
@@ -20,7 +21,17 @@ app.use(cookieParser());
 app.use("/api/auth", authRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  // Error handling
+  // Error handling and logging
+  // TODO: Log the error for debugging purposes
+  res
+    .status(500)
+    .json(
+      new ResponseBody(
+        { message: "Internal server error" },
+        true,
+        ResponseCode.INTERNAL_ERROR
+      )
+    );
 });
 
 export default app;

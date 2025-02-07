@@ -8,6 +8,22 @@ class ResponseCode {
   static DENEID = 6;
   static MISS_DATA = 7;
   static EXPIRED = 8;
+  static WRONG_CREDENTIALS = 9;
+  static INTERNAL_ERROR = 10;
+}
+
+class ResponseRecord {
+  static Client = "client";
+  static Student = "student";
+  static StudentCard = "student_card";
+}
+
+class ResponseBodyKey {
+  static Record = "record";
+  static TokenID = "tokenID";
+  static ClientID = "clientId";
+  static ClientURI = "clientUri";
+  static Data = "data";
 }
 
 class ResponseBody {
@@ -21,4 +37,4 @@ class ResponseBody {
   }
 }
 
-export { ResponseBody, ResponseCode };
+export { ResponseBody, ResponseCode, ResponseRecord, ResponseBodyKey };

@@ -17,6 +17,9 @@ const signupSchema = Joi.object({
   phone: Joi.string().optional(),
   password: Joi.string().required(),
   confirmPassword: Joi.ref("password"),
+  nationalCode: Joi.string()
+    .pattern(new RegExp(/^\d{10}$/))
+    .required(),
   studentNo: Joi.string().length(7).required(),
   birthDate: Joi.date().optional(),
 });
