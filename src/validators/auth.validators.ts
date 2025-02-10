@@ -3,8 +3,12 @@ import Joi from "joi";
 const signinSchema = Joi.object({
   identifier: Joi.alternatives(
     Joi.string().email(),
+    // username
     Joi.string().min(3).max(50),
-    Joi.string().length(7)
+    // studentNo
+    Joi.string().pattern(new RegExp(/^\d{7}$/)),
+    // nationalCode
+    Joi.string().pattern(new RegExp(/^\d{10}$/))
   ).required(),
   password: Joi.string(),
 });
