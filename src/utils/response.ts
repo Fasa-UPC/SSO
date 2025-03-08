@@ -10,6 +10,7 @@ class ResponseCode {
   static EXPIRED = 8;
   static WRONG_CREDENTIALS = 9;
   static INTERNAL_ERROR = 10;
+  static INVALID_DATA = 11;
 }
 
 class ResponseRecord {

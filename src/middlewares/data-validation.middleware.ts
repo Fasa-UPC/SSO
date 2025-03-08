@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import { ObjectSchema } from "joi";
+import { ResponseBody, ResponseCode } from "../utils/response.js";
 
 type DataValidationMiddleware = (
   schema: ObjectSchema,
@@ -26,13 +27,14 @@ const dataValidationMiddleware: DataValidationMiddleware = (
       allowUnknown: true,
     });
     if (error) {
-      res.status(400).json(error.details);
+      res
+        .status(400)
+        .json(new ResponseBody(error.details, true, ResponseCode.INVALID_DATA));
       return;
     }
 
     next();
   };
 };
-
 
 export default dataValidationMiddleware;

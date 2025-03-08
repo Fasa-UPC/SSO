@@ -2,6 +2,7 @@ import Joi from "joi";
 
 const signinSchema = Joi.object({
   identifier: Joi.alternatives(
+    // email
     Joi.string().email(),
     // username
     Joi.string().min(3).max(50),
